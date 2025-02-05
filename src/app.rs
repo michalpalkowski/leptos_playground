@@ -4,13 +4,13 @@ use leptos_router::{
     components::{Route, Router, Routes},
     StaticSegment,
 };
-use leptos_router::path;
 use leptos::server_fn::codec::{StreamingText, TextStream};
 use futures::{channel::mpsc, StreamExt};
 use leptos::task::spawn_local;
 use leptos::{
     component, server, view, IntoView,
 };
+use leptos_router::path;
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
     view! {
@@ -101,10 +101,10 @@ pub async fn get_counter() -> Result<TextStream, ServerFnError> {
     use tokio::time::sleep;
 
     let counter_stream = stream::unfold(0, |count| async move {
-        if count >= 100 {
+        if count >= 5000 {
             None
         } else {
-            sleep(Duration::from_secs(1)).await;
+            sleep(Duration::from_secs(65)).await;
             let new_count = count + 1;
             Some((Ok(new_count.to_string()), new_count))
         }
