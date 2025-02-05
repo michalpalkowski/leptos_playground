@@ -84,3 +84,4 @@
 **/Thumbs.db
 program_output.json
 input.txt
+.env
